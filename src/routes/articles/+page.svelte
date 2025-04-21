@@ -6,6 +6,7 @@
 	let articles = [
 		{
 			id: 1,
+			slug: 'my-experience-attending-at-css-day-2024',
 			content: `
 ## My experience attending at CSS Day 2024
 I’ve written and rewritten this post about five times now. This version seems to be the one to finally stick, though it’s taken a bit of a different direction than I was originally planning. In it, I talk about my experience attending CSS Day, both as an attendee, which was the original plan, but also as a well-known figure.
@@ -16,6 +17,7 @@ I’ve written and rewritten this post about five times now. This version seems 
 		},
 		{
 			id: 2,
+			slug: 'my-experience-speaking-at-css-day-2024',
 			content: `
 ## My experience attending at CSS Day 2024
 So, it’s been a minute (or like, 3 years...) since I last posted something here, and it probably will be a while before I post again to be honest. This post turned out to be way too long to include as the introduction to my newsletter, so I broke it off here.
@@ -34,7 +36,7 @@ I’ll have a follow-up at one point about my experience attending it as well: [
 			<RichTextViewer value={article.content} />
 			<Button
 				variant="default"
-				onclick={goto('/articles/slug-content')}
+				onclick={goto('/articles/' + article.slug)}
 				size="lg"
 				class="rounded-full text-lg shadow-lg">READ MORE</Button>
 			<Button variant="destructive" size="lg" class="rounded-full text-lg shadow-lg">DELETE</Button>
