@@ -13,6 +13,30 @@
 			"options": {
 				"parser": "svelte"
 			}
+		},
+		{
+			"files": "*.css",
+			"options": {
+				"parser": "css"
+			}
+		},
+		{
+			"files": "*.html",
+			"options": {
+				"parser": "html"
+			}
+		},
+		{
+			"files": ".prettierrc",
+			"options": {
+				"parser": "json"
+			}
+		},
+		{
+			"files": "*.json",
+			"options": {
+				"parser": "json"
+			}
 		}
 	]
 }
