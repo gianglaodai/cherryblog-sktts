@@ -11,11 +11,11 @@
 </script>
 
 <header>
-	<nav class="mb-10 px-9 sm:mx-0 py-8 shadow-[0_0_2em_rgba(0,0,0,0.1)]">
+	<nav class="mb-10 px-9 py-8 shadow-[0_0_2em_rgba(0,0,0,0.1)] sm:mx-0">
 		<ul
-			class="flex flex-wrap flex-row justify-around sm:justify-center space-y-2 sm:space-x-6 text-xl *:cursor-pointer
-			*:font-bold *:underline *:decoration-2 *:underline-offset-4 *:hover:text-black
-			*:hover:no-underline *:items-center">
+			class="flex flex-row flex-wrap justify-around space-y-2 text-xl *:cursor-pointer *:items-center *:font-bold
+			*:underline *:decoration-2 *:underline-offset-4 *:hover:text-black *:hover:no-underline
+			sm:justify-center sm:space-x-6">
 			<li class={cn('text-orange-600', { '*:decoration-4': firstPath === '/' })}>
 				<a href="/" class="block">HOME</a>
 			</li>

@@ -27,11 +27,8 @@ I’ll have a follow-up at one point about my experience attending it as well: [
 		{#key value}
 			<RichTextViewer {value} />
 		{/key}
-		<Button
-			variant="default"
-			onclick={goto('/articles/slug-content')}
-			size="lg"
-			class="rounded-full text-lg shadow-lg">READ MORE</Button>
+		<Button variant="default" onclick={goto('/articles/slug-content')} size="lg" class="rounded-full text-lg shadow-lg"
+			>READ MORE</Button>
 		<Button variant="destructive" size="lg" class="rounded-full text-lg shadow-lg">DELETE</Button>
 	</article>
 

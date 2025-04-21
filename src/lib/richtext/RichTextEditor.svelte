@@ -102,13 +102,7 @@
 	onMount(() => {
 		const renderer = wrapperEl.querySelector('.carta-renderer');
 		if (renderer && !renderer.classList.contains('prose')) {
-			renderer.classList.add(
-				'prose',
-				'prose-lg',
-				'dark:prose-invert',
-				'prose-a:text-blue-500',
-				'max-w-full'
-			);
+			renderer.classList.add('prose', 'prose-lg', 'dark:prose-invert', 'prose-a:text-blue-500', 'max-w-full');
 		}
 	});
 </script>

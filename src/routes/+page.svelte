@@ -5,14 +5,12 @@
 			<span class="text-indigo-600">Search engine</span>
 		</h1>
 		<p class="mx-auto max-w-xl leading-relaxed text-gray-500">
-			It is a long established fact that a reader will be distracted by the readable content of a
-			page when looking at its layout. The point of using Lorem Ipsum
+			It is a long established fact that a reader will be distracted by the readable content of a page when looking at
+			its layout. The point of using Lorem Ipsum
 		</p>
 	</div>
 	<div class="mt-12 items-center justify-center space-y-3 sm:flex sm:space-y-0 sm:space-x-6">
-		<a
-			href="/"
-			class="block w-full rounded-md bg-indigo-600 px-10 py-3.5 text-center text-white shadow-md sm:w-auto">
+		<a href="/" class="block w-full rounded-md bg-indigo-600 px-10 py-3.5 text-center text-white shadow-md sm:w-auto">
 			Get started
 		</a>
 		<a
@@ -29,8 +27,8 @@
 			<h3 class="font-semibold text-indigo-600">Professional services</h3>
 			<p class="text-3xl font-semibold text-gray-800 sm:text-4xl">Build the future with us</p>
 			<p class="text-gray-600">
-				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur excepteur sint occaecat cupidatat non proident.
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur
+				sint occaecat cupidatat non proident.
 			</p>
 		</div>
 		<div class="mt-4">
