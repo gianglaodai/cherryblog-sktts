@@ -1,7 +1,39 @@
 <script lang="ts">
 	import '../app.css';
-
+	import { page } from '$app/state';
+	import { cn } from '$lib/utils';
 	let { children } = $props();
+	function getFirstPath(pathname: string) {
+		const segments = pathname.split('/').filter(Boolean);
+		return segments.length > 0 ? '/' + segments[0] : '/';
+	}
+	let firstPath = $derived(getFirstPath(page.url.pathname));
 </script>
 
-{@render children()}
+<header>
+	<nav class="mb-10 px-9 sm:mx-0 py-8 shadow-[0_0_2em_rgba(0,0,0,0.1)]">
+		<ul
+			class="flex flex-wrap flex-row justify-around sm:justify-center space-y-2 sm:space-x-6 text-xl *:cursor-pointer
+			*:font-bold *:underline *:decoration-2 *:underline-offset-4 *:hover:text-black
+			*:hover:no-underline *:items-center">
+			<li class={cn('text-orange-600', { '*:decoration-4': firstPath === '/' })}>
+				<a href="/" class="block">HOME</a>
+			</li>
+			<li class={cn('text-blue-700', { '*:decoration-4': firstPath === '/articles' })}>
+				<a href="/articles" class="block">ARTICLES</a>
+			</li>
+			<li class={cn('text-pink-600', { '*:decoration-4': firstPath === '/about' })}>
+				<a href="/about" class="block">ABOUT ME</a>
+			</li>
+			<li class={cn('text-teal-700', { '*:decoration-4': firstPath === '/contact' })}>
+				<a href="/contact" class="block">CONTACT</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+<main class="mt-20">
+	{@render children()}
+</main>
+<footer class="pt-10">
+	<div class="mt-10 border-t py-10 md:text-center">© 2024 Cherry's Blog. All rights reserved.</div>
+</footer>
