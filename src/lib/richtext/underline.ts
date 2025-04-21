@@ -9,13 +9,11 @@ export const underline = (): Plugin => {
 				type: 'remark',
 				transform: ({ processor }) => {
 					processor.use(() => (tree) => {
+						/* eslint-disable */
 						visit(tree, 'text', (node: any, index, parent) => {
 							const regex = /\+\+([^\+]+)\+\+/g;
 							const value = node.value;
-							if (!regex.test(value)) {
-								return;
-							}
-
+							if (!regex.test(value)) return;
 							const parts = [];
 							let lastIndex = 0;
 							regex.lastIndex = 0;
@@ -26,23 +24,13 @@ export const underline = (): Plugin => {
 								const end = start + fullMatch.length;
 
 								if (start > lastIndex) {
-									parts.push({
-										type: 'text',
-										value: value.slice(lastIndex, start)
-									});
+									parts.push({ type: 'text', value: value.slice(lastIndex, start) });
 								}
 
 								parts.push({
 									type: 'underline',
-									data: {
-										hName: 'u'
-									},
-									children: [
-										{
-											type: 'text',
-											value: underlineText
-										}
-									]
+									data: { hName: 'u' },
+									children: [{ type: 'text', value: underlineText }]
 								});
 
 								lastIndex = end;
@@ -50,10 +38,7 @@ export const underline = (): Plugin => {
 
 							// text sau phần gạch chân
 							if (lastIndex < value.length) {
-								parts.push({
-									type: 'text',
-									value: value.slice(lastIndex)
-								});
+								parts.push({ type: 'text', value: value.slice(lastIndex) });
 							}
 
 							if (parent && typeof index === 'number') {
