@@ -27,21 +27,23 @@ I’ll have a follow-up at one point about my experience attending it as well: [
 	];
 </script>
 
-<h1 class="text-title leading-none font-black text-blue-700">My Articles</h1>
-<div class="articles">
-	{#each articles as article (article.id)}
-		<article
-			class="prose prose-lg dark:prose-invert prose-h2:text-5xl prose-h2:font-bold
+<div class="max-w-5xl mx-auto">
+	<h1 class="text-title leading-none font-black text-blue-700">My Articles</h1>
+	<div class="articles">
+		{#each articles as article (article.id)}
+			<article
+				class="prose prose-lg dark:prose-invert prose-h2:text-5xl prose-h2:font-bold
 	prose-h2:text-neutral-600 prose-p:text-xl prose-a:text-blue-500 max-w-full">
-			<RichTextViewer value={article.content} />
-			<Button
-				variant="default"
-				onclick={goto('/articles/' + article.slug)}
-				size="lg"
-				class="rounded-full text-lg shadow-lg">READ MORE</Button>
-			<Button variant="destructive" size="lg" class="rounded-full text-lg shadow-lg">DELETE</Button>
-		</article>
-	{/each}
+				<RichTextViewer value={article.content} />
+				<Button
+					variant="default"
+					onclick={goto('/articles/' + article.slug)}
+					size="lg"
+					class="rounded-full text-lg shadow-lg">READ MORE</Button>
+				<Button variant="destructive" size="lg" class="rounded-full text-lg shadow-lg">DELETE</Button>
+			</article>
+		{/each}
+	</div>
 </div>
 
 <style lang="postcss">
