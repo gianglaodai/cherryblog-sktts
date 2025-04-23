@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
 	import { Carta, Markdown } from 'carta-md';
 	import { underline } from '$lib/richtext/underline';
 
-	let { value = $bindable() }: PageProps = $props();
+	let { value = $bindable() } = $props<{ value?: string }>();
 
 	const carta = new Carta({
 		sanitizer: false,
@@ -11,4 +10,6 @@
 	});
 </script>
 
-<Markdown {carta} {value} />
+{#key value}
+	<Markdown {carta} {value} />
+{/key}

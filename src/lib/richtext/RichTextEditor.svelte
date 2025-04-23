@@ -97,7 +97,7 @@
 			underline()
 		]
 	});
-	let { value = $bindable() } = $props();
+	let { value = $bindable(), } = $props<{ value?: string}>();
 	let wrapperEl: HTMLDivElement;
 	onMount(() => {
 		const renderer = wrapperEl.querySelector('.carta-renderer');

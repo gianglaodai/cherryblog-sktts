@@ -17,7 +17,7 @@ I’ve written and rewritten this post about five times now. This version seems 
 		},
 		{
 			id: 2,
-			slug: 'my-experience-speaking-at-css-day-2024',
+			slug: 'my-experience-speaking-at-css-day-2025',
 			content: `
 ## My experience attending at CSS Day 2024
 So, it’s been a minute (or like, 3 years...) since I last posted something here, and it probably will be a while before I post again to be honest. This post turned out to be way too long to include as the introduction to my newsletter, so I broke it off here.
