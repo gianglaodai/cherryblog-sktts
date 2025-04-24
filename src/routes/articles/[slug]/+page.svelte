@@ -4,24 +4,11 @@
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
 
+	export let data;
+	let article = $state(data.article);
 	let isEditing = $state(true);
 	let metaTitle = $state('');
 	let metaDescription = $state('');
-
-	let article = $state({
-		id: 1,
-		slug: 'my-experience-attending-at-css-day-2024',
-		content: `
-## My experience attending at CSS Day 2024
-I’ve written and rewritten this post about five times now. This version seems to be the one to finally stick, though it’s taken a bit of a different direction than I was originally planning. In it, I talk about my experience attending CSS Day, both as an attendee, which was the original plan, but also as a well-known figure.
-
-[Last week, I posted about my experience speaking at CSS Day 2024](#)
-
-**The _best_ part about being a speaker, though, was finally being able to attend CSS Day!**
-`,
-		created_at: new Date(),
-		updated_at: new Date()
-	});
 
 	async function onSave(content: string) {
 		const { data, error } = await supabase.from('posts').upsert({...article, content}).select();
@@ -30,6 +17,10 @@ I’ve written and rewritten this post about five times now. This version seems 
 			return;
 		}
 		article = data[0];
+
+		const meta = extractMeta(article);
+		metaTitle = meta.metaTitle;
+		metaDescription = meta.metaDescription;
 	}
 
 	function extractMeta(content: string): { metaTitle: string, metaDescription: string } {
