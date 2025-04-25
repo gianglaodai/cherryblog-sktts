@@ -14,7 +14,6 @@
 	import UnderlineIcon from '$lib/richtext/icons/UnderlineIcon.svelte';
 	import { underline } from '$lib/richtext/underline';
 	import ImageIcon from '$lib/richtext/icons/ImageIcon.svelte';
-	import { Button } from '$lib/components/ui/button';
 
 	const carta = new Carta({
 		sanitizer: false,
@@ -98,7 +97,7 @@
 			underline()
 		]
 	});
-	let { value = $bindable(), submit } = $props<{ value?: string, submit?: (value: string) => void }>();
+	let { value = $bindable() } = $props<{ value?: string; submit?: (value: string) => void }>();
 	let wrapperEl: HTMLDivElement;
 	onMount(() => {
 		const renderer = wrapperEl.querySelector('.carta-renderer');
@@ -108,11 +107,10 @@
 	});
 </script>
 
-<div bind:this={wrapperEl} class="max-w-[128rem] mx-auto mb-2">
+<div bind:this={wrapperEl} class="mx-auto mb-2 max-w-[128rem]">
 	<div class="mb-2">
 		<MarkdownEditor {carta} mode="auto" bind:value theme="cherry" />
 	</div>
-	<Button onclick={()=>submit(value)}>Save</Button>
 </div>
 
 <style>
@@ -125,7 +123,8 @@
 		@apply caret-black;
 	}
 
-	:global(.carta-input), :global(.carta-renderer) {
+	:global(.carta-input),
+	:global(.carta-renderer) {
 		@apply max-w-5xl;
 		height: 70vh;
 		max-height: 70vh !important;

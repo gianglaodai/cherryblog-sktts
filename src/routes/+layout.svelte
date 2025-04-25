@@ -2,11 +2,25 @@
 	import '../app.css';
 	import { page } from '$app/state';
 	import { cn } from '$lib/utils';
-	let { children } = $props();
+	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation';
+
+	let { data, children } = $props();
+	let { session, supabase } = $derived(data);
+	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+		return () => data.subscription.unsubscribe();
+	});
+
 	function getFirstPath(pathname: string) {
 		const segments = pathname.split('/').filter(Boolean);
 		return segments.length > 0 ? '/' + segments[0] : '/';
 	}
+
 	let firstPath = $derived(getFirstPath(page.url.pathname));
 </script>
 
