@@ -1,9 +1,11 @@
 <script lang="ts">
 	import RichTextViewer from '$lib/richtext/RichTextViewer.svelte';
 	import { onMount } from 'svelte';
+	import { Button } from '$lib/components/ui/button';
 
 	const { data } = $props();
 	let article = $state(data.article);
+	let user = $derived(data.user);
 	let metaTitle = $state('');
 	let metaDescription = $state('');
 
@@ -37,6 +39,9 @@
 
 <article
 	class="prose prose-lg dark:prose-invert prose-h2:mt-0 prose-h2:text-title prose-h2:font-black
-	prose-h2:leading-none prose-h2:text-blue-700 prose-a:text-blue-500 max-w-full">
+	prose-h2:leading-none prose-h2:text-blue-700 prose-a:text-blue-500 mx-auto max-w-5xl">
 	<RichTextViewer value={article.content} />
+	{#if user}
+		<Button>Edit</Button>
+	{/if}
 </article>

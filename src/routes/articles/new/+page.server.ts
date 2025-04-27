@@ -1,6 +1,12 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import type { SupabaseClient } from '@supabase/supabase-js';
+
+export const load: PageServerLoad = async ({ locals: { user } }) => {
+	if (!user) {
+		throw redirect(303, '/');
+	}
+};
 
 function extractTitle(content: string): string | null {
 	const line = content.split('\n').find((line) => line.startsWith('## '));
@@ -27,30 +33,22 @@ async function generateUniqueSlug(baseSlug: string, supabase: SupabaseClient) {
 	return slug;
 }
 
-export const actions: Actions = {
+export const actions = {
 	default: async ({ request, locals: { supabase, user } }) => {
 		const formData = await request.formData();
 		const content = formData.get('content') as string;
 		if (!content) return fail(400, { error: 'Content is required' });
 		const title = extractTitle(content);
 		if (!title) return fail(400, { error: 'Title is required' });
-		const baseSlug = slugify(title);
-		const slug = await generateUniqueSlug(baseSlug, supabase);
+
+		const slug = await generateUniqueSlug(slugify(title), supabase);
 
 		if (!user?.id) return fail(401, { error: 'Unauthorized' });
-		const { data, error } = await supabase
-			.from('posts')
-			.insert({
-				content,
-				slug,
-				user_id: user.id
-			})
-			.select()
-			.single();
+		const { data, error } = await supabase.from('posts').insert({ content, slug, user_id: user.id }).select().single();
 		if (error) {
 			console.error(error);
 			return fail(500, { error: 'Internal server error' });
 		}
 		throw redirect(303, `/articles/${data.slug}/edit`);
 	}
-};
+} satisfies Actions;

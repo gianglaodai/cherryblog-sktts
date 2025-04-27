@@ -1,23 +1,15 @@
 <script lang="ts">
 	import RichTextEditor from '$lib/richtext/RichTextEditor.svelte';
-	import { supabase } from '$lib/supabaseClient.js';
+	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
 
 	const { data } = $props();
 	let article = $state(data.article);
-
-	async function onSave(content: string) {
-		const { data, error } = await supabase
-			.from('posts')
-			.upsert({ ...article, content })
-			.select();
-		if (error) {
-			console.error(error);
-			return;
-		}
-		article = data[0];
-	}
 </script>
 
 <article class="mb-12 h-full">
-	<RichTextEditor bind:value={article.content} submit={onSave} />
+	<form method="POST" use:enhance>
+		<RichTextEditor bind:value={article.content} />
+		<Button type="submit">Save</Button>
+	</form>
 </article>
